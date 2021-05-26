@@ -1,11 +1,16 @@
 service LanguageService {
     entity Languages {
-        sISOCode : String;
-        sName    : String;
+        sISOCode : String @title: 'ISO Code';
+        sName    : String @title: 'Name';
     }
 
     entity LanguageName {
-        sISOCode : String;
+        sISOCode : String ;
         sName    : String;
     }
 }
+
+annotate LanguageService.Languages with @UI.LineItem  : [
+    {Value: sISOCode},
+    {Value: sName}
+];

@@ -1,1 +1,12 @@
-{}
+{
+    "requires": {
+      "languageService": {
+        "kind": "rest",
+        "model": "srv/languages.cds",
+        "credentials": {
+          "destination": "languageService",
+          "url": "http://webservices.oorsprong.org"
+        }
+      }
+    }
+}

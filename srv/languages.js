@@ -1,9 +1,6 @@
 const cds = require('@sap/cds');
 const soap = require('soap');
 
-const url = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL';
-let args = {};
-
 // **********************************
 // See documentation for node-soap
 // https://github.com/vpulim/node-soap
@@ -12,17 +9,22 @@ let args = {};
 //     response is in form of array, first item is the actual response.
 // **********************************
 
-module.exports = function (){
+module.exports = async function (){
+    const languageService = await cds.connect.to('languageService');
+    const url = `${languageService.options.credentials.url}/websamples.countryinfo/CountryInfoService.wso?WSDL`;
+    let args = {};
+
     this.on ('READ', `Languages`, async ( req ) =>{
         console.log("API: Starting request..")
         const client = await soap.createClientAsync(url);
         const response = await client.ListOfLanguagesByNameAsync(args);
-        const result = response[0];
-
         console.log("API: Request done.");
-        console.log(result);
 
-        req.reply( result.ListOfLanguagesByNameResult.tLanguage );
+        const result = response[0].ListOfLanguagesByNameResult.tLanguage;
+        if (req.query.SELECT.count){
+            result.$count = result.length;
+        }
+        return result;
     }) ;
 
     this.on('POST', `LanguageName`, async ( req ) =>{
