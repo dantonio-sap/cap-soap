@@ -21,7 +21,8 @@ module.exports = function (){
 
         console.log("API: Request done.");
         console.log(result);
-        return result.ListOfLanguagesByNameResult.tLanguage;
+
+        req.reply( result.ListOfLanguagesByNameResult.tLanguage );
     }) ;
 
     this.on('POST', `LanguageName`, async ( req ) =>{

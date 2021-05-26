@@ -1,0 +1,1 @@
+using LanguageService as service from '../../srv/languages';

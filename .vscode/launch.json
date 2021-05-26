@@ -5,11 +5,56 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "cds run --with-mocks --in-memory?",
-      "name": "cds run",
+      "name": "Debug cap-soap",
       "request": "launch",
-      "type": "node-terminal",
-      "skipFiles": [ "<node_internals>/**" ]
+      "type": "node",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-n"
+      ],
+      "args": [
+        "--",
+        "cds",
+        "run",
+        "--in-memory?"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "envFile": "${workspaceFolder}/.env1",
+      "env": {
+        "NODE_ENV": "development",
+        "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/home/user/projects/cap-soap\\\",\\\"profileName\\\":\\\"development\\\"}\"}"
+      }
+    },
+    {
+      "name": "Run cap-soap",
+      "request": "launch",
+      "type": "node",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-n"
+      ],
+      "args": [
+        "--",
+        "cds",
+        "run",
+        "--in-memory?"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "envFile": "${workspaceFolder}/.env2",
+      "env": {
+        "NODE_ENV": "development",
+        "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/home/user/projects/cap-soap\\\",\\\"profileName\\\":\\\"development\\\"}\"}"
+      }
     }
   ]
 }
